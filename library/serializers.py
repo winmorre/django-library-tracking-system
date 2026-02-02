@@ -45,3 +45,10 @@ class LoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields = ['id', 'book', 'book_id', 'member', 'member_id', 'loan_date', 'return_date', 'is_returned']
+
+
+class TopActiveMemberSerializer(serializers.Serializer):
+    id = serializers.IntegerField(source='pk')
+    username = serializers.CharField(source='user.username')
+    email = serializers.EmailField(source='user.email')
+    active_loans_count = serializers.IntegerField()
